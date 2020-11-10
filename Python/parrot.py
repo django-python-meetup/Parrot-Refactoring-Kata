@@ -1,4 +1,4 @@
-lfrom enum import Enum
+from enum import Enum
 from dataclasses import dataclass
 from typing import Union
 
