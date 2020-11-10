@@ -2,7 +2,7 @@ lfrom enum import Enum
 from dataclasses import dataclass
 from typing import Union
 
-ean
+
 class ParrotType(Enum):
     EUROPEAN = 1
     AFRICAN = 2
