@@ -1,22 +1,14 @@
-from enum import Enum
+lfrom enum import Enum
 from dataclasses import dataclass
 from typing import Union
 
-
+ean
 class ParrotType(Enum):
     EUROPEAN = 1
     AFRICAN = 2
     NORWEGIAN_BLUE = 3
 
 
-def _base_speed(self):
-    return 12.0
-
-parrot_func_dict = {
-    ParrotType.EUROPEAN: _base_speed,
-    ParrotType.AFRICAN: ,
-    ParrotType.NORWEGIAN_BLUE:
-}
 
 @dataclass
 class Parrot:
@@ -27,21 +19,25 @@ class Parrot:
 
     def speed(self):
         if self.type_of_parrot == ParrotType.EUROPEAN:
-            return self._base_speed()
+            return self._base_speed
         if self.type_of_parrot == ParrotType.AFRICAN:
-            return max(0, self._base_speed() - self._load_factor() * self.number_of_coconuts)
+            return max(0, self._base_speed - self._load_factor * self.number_of_coconuts)
         if self.type_of_parrot == ParrotType.NORWEGIAN_BLUE: 
             if self.nailed:
                 return 0
             else:
-                return self._compute_base_speed_for_voltage(self.voltage)
+                return self._compute_base_speed_for_voltage
 
-    raise ValueError("should be unreachable")
+        raise ValueError("should be unreachable")
 
-def _compute_base_speed_for_voltage(self, voltage):
-    return min([24.0, voltage * self._base_speed()])
+    @property
+    def _compute_base_speed_for_voltage(self):
+        return min([24.0, self.voltage * self._base_speed])
 
-def _load_factor(self):
-    return 9.0
-
+    @property
+    def _load_factor(self):
+        return 9.0
+    @property
+    def _base_speed(self):
+        return 12.0
 
