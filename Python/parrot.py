@@ -10,6 +10,26 @@ class ParrotType(Enum):
 
 
 
+def _base_speed(self):
+    return self._base_speed
+
+def _coconut_load_based(self):
+    return max(0, self._base_speed - self._load_factor * self.number_of_coconuts)
+
+def _possibly_nailed(self):
+    if self.nailed:
+        return 0
+    else:
+        return self._compute_base_speed_for_voltage
+
+
+speed_funcs = {
+    ParrotType.EUROPEAN: _base_speed,
+    ParrotType.AFRICAN: _coconut_load_based,
+    ParrotType.NORWEGIAN_BLUE: _possibly_nailed,
+}
+
+
 @dataclass
 class Parrot:
     type_of_parrot: ParrotType
@@ -18,17 +38,7 @@ class Parrot:
     nailed: bool
 
     def speed(self):
-        if self.type_of_parrot == ParrotType.EUROPEAN:
-            return self._base_speed
-        if self.type_of_parrot == ParrotType.AFRICAN:
-            return max(0, self._base_speed - self._load_factor * self.number_of_coconuts)
-        if self.type_of_parrot == ParrotType.NORWEGIAN_BLUE: 
-            if self.nailed:
-                return 0
-            else:
-                return self._compute_base_speed_for_voltage
-
-        raise ValueError("should be unreachable")
+        return speed_funcs[self.type_of_parrot](self)
 
     @property
     def _compute_base_speed_for_voltage(self):
